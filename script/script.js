@@ -2,6 +2,7 @@
 let totalNumber = document.getElementById("total-count");
 let interviewNumber = document.getElementById("interview-count");
 let rejectedNumber = document.getElementById("rejected-count");
+let tabJob = document.getElementById("tab-jobs")
 // calling containers 
 let allCard = document.getElementById("all-card");
 let mainContainer = document.querySelector("main");
@@ -23,21 +24,33 @@ function toggleStyle(id){
 
     if(id == 'all'){
         allCard.classList.remove('hidden')
-        filteredSection.classList.add('hidden')
+        filteredSection.classList.add('hidden');
+        tabJob.innerText =allCard.children.length;
+
     }else if(id == 'interview'){
         allCard.classList.add('hidden')
         filteredSection.classList.remove('hidden')
         renderInterview()
+        tabJob.innerText =interviewList.length;
     }else if (id == 'rejected'){
         allCard.classList.add('hidden')
         filteredSection.classList.remove('hidden')
         renderRejected();
+        tabJob.innerText =rejectedList.length;
     }
 }
 function count(){
     totalNumber.innerText=allCard.children.length;
     interviewNumber.innerText=interviewList.length;
-    rejectedNumber.innerText= rejectedList.length;}
+    rejectedNumber.innerText= rejectedList.length;
+    if (allBtn.classList.contains('btn-info')) {
+        tabJob.innerText = allCard.children.length;
+    } else if (interviewBtn.classList.contains('btn-info')) {
+        tabJob.innerText = interviewList.length;
+    } else if (rejectedBtn.classList.contains('btn-info')) {
+        tabJob.innerText = rejectedList.length;
+    }
+}
 count()
 
 mainContainer.addEventListener('click', function(event){
@@ -74,8 +87,8 @@ mainContainer.addEventListener('click', function(event){
             }
         });
         count()
-        renderInterview()
         renderRejected()
+        renderInterview()
     }
     // rejected btn clicked 
     if(event.target.classList.contains('btn-error')){
@@ -110,8 +123,8 @@ mainContainer.addEventListener('click', function(event){
             }
         });
         count()
-        renderRejected()
         renderInterview()
+        renderRejected()
     }
 });
 
