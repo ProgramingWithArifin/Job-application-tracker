@@ -87,8 +87,11 @@ mainContainer.addEventListener('click', function(event){
             }
         });
         count()
-        renderRejected()
-        renderInterview()
+        if (interviewBtn.classList.contains('btn-info')) {
+            renderInterview();
+        } else if (rejectedBtn.classList.contains('btn-info')) {
+            renderRejected();
+        }
     }
     // rejected btn clicked 
     if(event.target.classList.contains('btn-error')){
@@ -123,8 +126,34 @@ mainContainer.addEventListener('click', function(event){
             }
         });
         count()
-        renderInterview()
-        renderRejected()
+        if (interviewBtn.classList.contains('btn-info')) {
+            renderInterview();
+        } else if (rejectedBtn.classList.contains('btn-info')) {
+            renderRejected();
+        }
+    }
+    // trash button 
+    if(event.target.closest('.btn-secondary')){
+        let parent = event.target.closest('.cards');
+        let title = parent.querySelector('.title h2').innerText;
+
+        interviewList = interviewList.filter(item => item.title !== title);
+        rejectedList = rejectedList.filter(item => item.title !== title);
+
+        const allTabCards = allCard.querySelectorAll('.cards');
+        allTabCards.forEach(card => {
+            if(card.querySelector('h2').innerText === title){
+                card.remove(); 
+            }
+        });
+        count();
+        if (filteredSection.classList.contains('hidden') === false) {
+            if (interviewBtn.classList.contains('btn-info')) {
+                renderInterview();
+            } else if (rejectedBtn.classList.contains('btn-info')) {
+                renderRejected();
+            }
+        }
     }
 });
 
