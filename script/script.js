@@ -10,15 +10,8 @@ let allBtn = document.getElementById("all");
 let interviewBtn = document.getElementById("interview");
 let rejectedBtn = document.getElementById("rejected");
 // array of the interview and rejected tab 
-let interviewList = []
-let rejectedList =[]
-
-function count(){
-    totalNumber.innerText=allCard.children.length;
-    interviewNumber.innerText=interviewList.length;
-    rejectedNumber.innerText= rejectedList.length;}
-count()
-
+let interviewList = [];
+let rejectedList =[];
 function toggleStyle(id){
     // removing style from all button 
     allBtn.classList.remove('btn-info','text-white')
@@ -27,3 +20,9 @@ function toggleStyle(id){
     let selectedBtn = document.getElementById(id)
     selectedBtn.classList.add('btn-info','text-white')
 }
+
+function count(){
+    totalNumber.innerText=allCard.children.length;
+    interviewNumber.innerText=interviewList.length;
+    rejectedNumber.innerText= rejectedList.length;}
+count();
