@@ -14,6 +14,7 @@ let rejectedBtn = document.getElementById("rejected");
 // array of the interview and rejected tab 
 let interviewList = [];
 let rejectedList =[];
+// toggling tab button 
 function toggleStyle(id){
     // removing style from all button 
     allBtn.classList.remove('btn-info','text-white')
@@ -22,6 +23,7 @@ function toggleStyle(id){
     let selectedBtn = document.getElementById(id)
     selectedBtn.classList.add('btn-info','text-white')
 
+    // toggling tab 
     if(id == 'all'){
         allCard.classList.remove('hidden')
         filteredSection.classList.add('hidden');
@@ -39,6 +41,8 @@ function toggleStyle(id){
         tabJob.innerText =rejectedList.length;
     }
 }
+// counting function 
+
 function count(){
     totalNumber.innerText=allCard.children.length;
     interviewNumber.innerText=interviewList.length;
@@ -52,10 +56,11 @@ function count(){
     }
 }
 count()
-
+// main event listener 
 mainContainer.addEventListener('click', function(event){
     // interviewBtn click 
     if(event.target.classList.contains('btn-success')){
+        // calling required element 
         let parent= event.target.parentNode.parentNode;
         let title = parent.querySelector('.title h2').innerText;
         let role = parent.querySelector('.title p').innerText;
@@ -63,13 +68,16 @@ mainContainer.addEventListener('click', function(event){
         let statusEl = parent.querySelector('.applyStatus');
         let status = parent.querySelector('.applyStatus').innerText;
         let note = parent.querySelector('.note').innerText;
+
         let cardInfo ={
             title, 
             role, 
             salary, 
             status:'Interview', 
             note};
+        // if on reject list remove from reject list 
         rejectedList = rejectedList.filter(item => item.title !== title);
+        // check if already on interview list 
         const interviewExist = interviewList.find(item=> item.title == cardInfo.title)
         statusEl.innerText ="Interview";
         statusEl.classList.remove("text-red-600");
@@ -78,6 +86,7 @@ mainContainer.addEventListener('click', function(event){
         if(!interviewExist){
             interviewList.push(cardInfo);
         }
+        // for multitab 
         const allTabCards = allCard.querySelectorAll('.cards');
         allTabCards.forEach(card => {
             if(card.querySelector('h2').innerText === title){
@@ -86,6 +95,7 @@ mainContainer.addEventListener('click', function(event){
                 badge.className = "applyStatus badge badge-outline text-green-600 font-bold p-4 max-sm:p-2";
             }
         });
+        // recounting and rendering 
         count()
         if (interviewBtn.classList.contains('btn-info')) {
             renderInterview();
@@ -93,8 +103,9 @@ mainContainer.addEventListener('click', function(event){
             renderRejected();
         }
     }
-    // rejected btn clicked 
+    // rejected btn click 
     if(event.target.classList.contains('btn-error')){
+        // calling required elements 
         let parent= event.target.parentNode.parentNode;
         let title = parent.querySelector('.title h2').innerText;
         let role = parent.querySelector('.title p').innerText;
@@ -108,7 +119,9 @@ mainContainer.addEventListener('click', function(event){
             salary, 
             status:'Rejected', 
             note};
+        // check if it is on interview list if on interview list then remove 
         interviewList = interviewList.filter(item => item.title !== title);
+        // cheking if already on rejected list 
         const rejectedExist = rejectedList.find(item=> item.title == cardInfo.title)
         statusEl.innerText ="Rejected";
         statusEl.classList.remove("text-green-600");
@@ -117,6 +130,7 @@ mainContainer.addEventListener('click', function(event){
         if(!rejectedExist){
             rejectedList.push(cardInfo);
         }
+        // for multitab 
         const allTabCards = allCard.querySelectorAll('.cards');
         allTabCards.forEach(card => {
             if(card.querySelector('h2').innerText === title){
@@ -125,6 +139,7 @@ mainContainer.addEventListener('click', function(event){
                 badge.className = "applyStatus badge badge-outline text-red-600 font-bold p-4 max-sm:p-2";
             }
         });
+        // recounting and rendering 
         count()
         if (interviewBtn.classList.contains('btn-info')) {
             renderInterview();
@@ -134,18 +149,20 @@ mainContainer.addEventListener('click', function(event){
     }
     // trash button 
     if(event.target.closest('.btn-secondary')){
+        // calling element 
         let parent = event.target.closest('.cards');
         let title = parent.querySelector('.title h2').innerText;
-
+        // deleting from object 
         interviewList = interviewList.filter(item => item.title !== title);
         rejectedList = rejectedList.filter(item => item.title !== title);
-
+        // deleting from all tabs 
         const allTabCards = allCard.querySelectorAll('.cards');
         allTabCards.forEach(card => {
             if(card.querySelector('h2').innerText === title){
                 card.remove(); 
             }
         });
+        // counting and rendering 
         count();
         if (filteredSection.classList.contains('hidden') === false) {
             if (interviewBtn.classList.contains('btn-info')) {
@@ -156,9 +173,10 @@ mainContainer.addEventListener('click', function(event){
         }
     }
 });
-
+// for interview section 
 function renderInterview(){
     filteredSection.innerHTML='';
+    // when interview section is empty 
     if(interviewList.length == 0){
         let div = document.createElement("div");
         div.className= "py-15 text-center space-y-5";
@@ -168,6 +186,7 @@ function renderInterview(){
             <p class="text-gray-600">Check back soon for new job opportunities</p>`;
         filteredSection.append(div)
     }
+    // when there is data 
     for(let card of interviewList){
         let div = document.createElement("div");
         div.className = 'cards flex justify-between items-start hover:border-[#002c5c] max-md:flex-col max-md:gap-4 max-sm:p-4 rounded p-8 bg-white border border-[#f1f2f4FF]'
@@ -193,9 +212,10 @@ function renderInterview(){
         filteredSection.append(div)
     }
 }
-
+// for rejected tab 
 function renderRejected(){
     filteredSection.innerHTML='';
+    // when rejected tab is empty 
     if(rejectedList.length == 0){
         let div = document.createElement("div");
         div.className= "py-15 text-center space-y-5";
@@ -205,6 +225,7 @@ function renderRejected(){
             <p class="text-gray-600">Check back soon for new job opportunities</p>`;
         filteredSection.append(div)
     }
+    // when there is data 
     for(let card of rejectedList){
         let div = document.createElement("div");
         div.className = 'cards flex justify-between items-start hover:border-[#002c5c] max-md:flex-col max-md:gap-4 max-sm:p-4 rounded p-8 bg-white border border-[#f1f2f4FF]'

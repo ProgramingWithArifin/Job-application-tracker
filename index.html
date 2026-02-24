@@ -14,7 +14,9 @@
 </head>
 <body class="bg-neutral-200 space-y-5 min-h-screen">
     <header class="w-11/12 mx-auto space-y-5 py-10 max-md:w-[95%]">
+        <!-- main title  -->
         <h2 class="text-4xl font-bold text text-[#002c5c]">Job Application Tracker</h2>
+        <!-- tracking container  -->
         <div class="tracker-container grid grid-cols-3 gap-2 max-sm:grid-cols-1">
             <div class="bg-white border border-[#f1f2f4FF] rounded-lg p-5 ">
                 <p>Total</p>
@@ -31,10 +33,12 @@
         </div>
     </header>
     <main class="w-11/12 mx-auto space-y-5 max-md:w-[95%] mb-0 pb-5">
+        <!-- Available jobs with tab counter  -->
         <div class="flex justify-between">
             <h2 class="text-[#002c5c] text-2xl font-semibold">Available Jobs</h2>
             <p class="text-gray-600"><span id="tab-jobs">8</span> Jobs</p>
         </div>
+        <!-- tab button container  -->
         <div id="btn-container" class="space-x-3">
             <button onclick="toggleStyle('all')" id="all" class="btn btn-info text-white w-20">All</button>
             <button onclick="toggleStyle('interview')" id="interview" class="btn w-20">Interview</button>
@@ -44,6 +48,7 @@
          <section id="filtered-section" class="hidden space-y-5 mb-0">
 
          </section>
+         <!-- cards section  -->
         <section>
             <div id="all-card" class="space-y-5">
                 <div class="cards flex justify-between items-start hover:border-[#002c5c] max-md:flex-col max-md:gap-4 max-sm:p-4 rounded p-8 bg-white border border-[#f1f2f4FF]">
