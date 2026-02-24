@@ -56,7 +56,7 @@ mainContainer.addEventListener('click', function(event){
             salary, 
             status:'Interview', 
             note};
-
+        rejectedList = rejectedList.filter(item => item.title !== title);
         const interviewExist = interviewList.find(item=> item.title == cardInfo.title)
         statusEl.innerText ="Interview";
         statusEl.classList.remove("text-red-600");
@@ -65,11 +65,20 @@ mainContainer.addEventListener('click', function(event){
         if(!interviewExist){
             interviewList.push(cardInfo);
         }
+        const allTabCards = allCard.querySelectorAll('.cards');
+        allTabCards.forEach(card => {
+            if(card.querySelector('h2').innerText === title){
+                let badge = card.querySelector('.applyStatus');
+                badge.innerText = "Interview";
+                badge.className = "applyStatus badge badge-outline text-green-600 font-bold p-4 max-sm:p-2";
+            }
+        });
         count()
         renderInterview()
-        }
+        renderRejected()
+    }
     // rejected btn clicked 
-        if(event.target.classList.contains('btn-error')){
+    if(event.target.classList.contains('btn-error')){
         let parent= event.target.parentNode.parentNode;
         let title = parent.querySelector('.title h2').innerText;
         let role = parent.querySelector('.title p').innerText;
@@ -83,7 +92,7 @@ mainContainer.addEventListener('click', function(event){
             salary, 
             status:'Rejected', 
             note};
-
+        interviewList = interviewList.filter(item => item.title !== title);
         const rejectedExist = rejectedList.find(item=> item.title == cardInfo.title)
         statusEl.innerText ="Rejected";
         statusEl.classList.remove("text-green-600");
@@ -92,11 +101,19 @@ mainContainer.addEventListener('click', function(event){
         if(!rejectedExist){
             rejectedList.push(cardInfo);
         }
+        const allTabCards = allCard.querySelectorAll('.cards');
+        allTabCards.forEach(card => {
+            if(card.querySelector('h2').innerText === title){
+                let badge = card.querySelector('.applyStatus');
+                badge.innerText = "Rejected";
+                badge.className = "applyStatus badge badge-outline text-red-600 font-bold p-4 max-sm:p-2";
+            }
+        });
         count()
         renderRejected()
-        }
-
-})
+        renderInterview()
+    }
+});
 
 function renderInterview(){
     filteredSection.innerHTML='';
