@@ -18,15 +18,15 @@
         <div class="tracker-container grid grid-cols-3 gap-2">
             <div class="bg-white border border-[#f1f2f4FF] rounded-lg p-5 ">
                 <p>Total</p>
-                <p class="text-[#002c5c] text-2xl font-bold">0</p>
+                <p class="text-[#002c5c] text-2xl font-bold" id="total-count">0</p>
             </div>
             <div class="bg-white border border-[#f1f2f4FF] rounded-lg p-5">
                 <p>Interview</p>
-                <p class="text-2xl text-green-500 font-bold">0</p>
+                <p class="text-2xl text-green-500 font-bold" id="interview-count">0</p>
             </div>
             <div class="bg-white border border-[#f1f2f4FF] rounded-lg p-5">
                 <p>Rejected</p>
-                <p class="text-2xl text-red-500 font-bold">0</p>
+                <p class="text-2xl text-red-500 font-bold" id="rejected-count">0</p>
             </div>
         </div>
     </header>
@@ -38,7 +38,7 @@
             <button id="rejected" class="btn bg-gray-200 w-20">Rejected</button>
         </div>
         <section>
-            <div class="card-container space-y-5">
+            <div id="all-card" class="space-y-5">
                 <div class="cards flex justify-between items-start hover:border-[#002c5c] max-md:flex-col max-md:gap-4  rounded p-8 bg-white border border-[#f1f2f4FF]">
                     <div class="left space-y-5">
                         <div class="title">
@@ -52,13 +52,13 @@
                             <p>Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
                         </div>
                         <div class="buttons">
-                            <button class="btn btn-outline btn-success">Intervew</button>
+                            <button class="btn btn-outline btn-success">Interview</button>
                             <button class="btn btn-outline btn-error">Rejected</button>
                         </div>
                     </div>
                     <div class="right "><button class="btn w-10 btn-outline btn-secondary h-10"><i class="fa-regular fa-trash-can"></i></button></div>
                 </div>
-                <div class="cards flex justify-between items-start max-md:flex-col max-md:gap-4  rounded p-8 bg-white border border-[#f1f2f4FF]">
+                <div class="cards flex justify-between items-start max-md:flex-col max-md:gap-4 hover:border-[#002c5c] rounded p-8 bg-white border border-[#f1f2f4FF]">
                     <div class="left space-y-5">
                         <div class="title">
                             <h2 class="text-[#002c5c] text-2xl font-semibold">WebFlow Agency</h2>
@@ -71,7 +71,7 @@
                             <p>Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
                         </div>
                         <div class="buttons">
-                            <button class="btn btn-outline btn-success">Intervew</button>
+                            <button class="btn btn-outline btn-success">Interview</button>
                             <button class="btn btn-outline btn-error">Rejected</button>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                             <p>Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.</p>
                         </div>
                         <div class="buttons">
-                            <button class="btn btn-outline btn-success">Intervew</button>
+                            <button class="btn btn-outline btn-success">Interview</button>
                             <button class="btn btn-outline btn-error">Rejected</button>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                             <p>Design and maintain scalable backend systems using Python and AWS. Work with modern DevOps practices and cloud infrastructure.</p>
                         </div>
                         <div class="buttons">
-                            <button class="btn btn-outline btn-success">Intervew</button>
+                            <button class="btn btn-outline btn-success">Interview</button>
                             <button class="btn btn-outline btn-error">Rejected</button>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                             <p>Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.</p>
                         </div>
                         <div class="buttons">
-                            <button class="btn btn-outline btn-success">Intervew</button>
+                            <button class="btn btn-outline btn-success">Interview</button>
                             <button class="btn btn-outline btn-error">Rejected</button>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                             <p>Build enterprise applications with JavaScript and modern frameworks. We offer competitive compensation, health insurance, and professional development opportunities.</p>
                         </div>
                         <div class="buttons">
-                            <button class="btn btn-outline btn-success">Intervew</button>
+                            <button class="btn btn-outline btn-success">Interview</button>
                             <button class="btn btn-outline btn-error">Rejected</button>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                             <p>Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
                         </div>
                         <div class="buttons">
-                            <button class="btn btn-outline btn-success">Intervew</button>
+                            <button class="btn btn-outline btn-success">Interview</button>
                             <button class="btn btn-outline btn-error">Rejected</button>
                         </div>
                     </div>
@@ -185,7 +185,7 @@
                             <p>We are looking for an experienced Frontend Developer to build scalable web applications using React and TypeScript. You will work with a talented team on cutting-edge projects.p>
                         </div>
                         <div class="buttons">
-                            <button class="btn btn-outline btn-success">Intervew</button>
+                            <button class="btn btn-outline btn-success">Interview</button>
                             <button class="btn btn-outline btn-error">Rejected</button>
                         </div>
                     </div>
@@ -194,5 +194,6 @@
             </div>
         </section>
     </main>
+<script src="script/script.js"></script>
 </body>
 </html>
